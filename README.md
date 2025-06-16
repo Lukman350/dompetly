@@ -1,6 +1,6 @@
 # dompetly
 
-An app
+An mobile app to manage your financial
 
 ## Getting Started
 
