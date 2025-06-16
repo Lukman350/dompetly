@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
   final String type;
-  final Widget child;
+  final Widget? child;
   final GestureTapCallback? onPressed;
 
   const Button({
