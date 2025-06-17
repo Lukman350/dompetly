@@ -43,7 +43,10 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file(keystoreProperties["storeFile"] as String)
+            val storeFilePath = keystoreProperties["storeFile"] as? String
+                ?: throw GradleException("Missing storeFile in key.properties")
+
+            storeFile = rootProject.file("android/$storeFilePath")
             storePassword = keystoreProperties["storePassword"] as String
             keyAlias = keystoreProperties["keyAlias"] as String
             keyPassword = keystoreProperties["keyPassword"] as String
@@ -59,7 +62,7 @@ android {
 //            signingConfig = signingConfigs.getByName("debug")
 
             signingConfig = signingConfigs.getByName("release")
-            
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
