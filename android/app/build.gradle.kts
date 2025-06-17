@@ -1,11 +1,5 @@
 import java.util.Properties
 
-val keystoreProperties = Properties()
-val keystorePropertiesFile = rootProject.file("android/key.properties")
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(keystorePropertiesFile.inputStream())
-}
-
 plugins {
     id("com.android.application")
     // START: FlutterFire Configuration
@@ -43,6 +37,14 @@ android {
 
     signingConfigs {
         create("release") {
+            val keystoreProperties = Properties()
+            val keystorePropertiesFile = rootProject.file("android/key.properties")
+            if (keystorePropertiesFile.exists()) {
+                keystoreProperties.load(keystorePropertiesFile.inputStream())
+            } else {
+                throw GradleException("key.properties file not found at ${keystorePropertiesFile.path}")
+            }
+
             val storeFilePath = keystoreProperties["storeFile"] as? String
                 ?: throw GradleException("Missing storeFile in key.properties")
 
