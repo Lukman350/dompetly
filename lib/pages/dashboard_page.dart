@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class DashboardPage extends StatelessWidget {
   static final String routeName = '/dashboard';
 
-  const DashboardPage({super.key});
+  DashboardPage({super.key});
 
   final AuthController authController = AuthController.to;
 
@@ -12,7 +12,10 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Text(
-        'Welcome to dashboard ${authController.loginType == LoginType.google ? 'Google' : 'Email'} ${authController.firebaseUser.value} ${authController.localUser.value}',
+        'Welcome to dashboard ${authController.loginType == LoginType.google
+            ? 'Google'
+            : 'Email'} ${authController.firebaseUser.value} ${authController
+            .localUser.value}',
       ),
     );
   }
