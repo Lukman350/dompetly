@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController _controller;
   late Animation<double> _animation;
 
-  final authController = Get.find<AuthController>();
+  final authController = AuthController.to;
 
   @override
   void initState() {
