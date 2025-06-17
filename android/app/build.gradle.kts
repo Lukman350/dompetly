@@ -38,7 +38,7 @@ android {
     signingConfigs {
         create("release") {
             val keystoreProperties = Properties()
-            val keystorePropertiesFile = rootProject.file("android/key.properties")
+            val keystorePropertiesFile = rootProject.file("key.properties")
             if (keystorePropertiesFile.exists()) {
                 keystoreProperties.load(keystorePropertiesFile.inputStream())
             } else {
@@ -48,7 +48,7 @@ android {
             val storeFilePath = keystoreProperties["storeFile"] as? String
                 ?: throw GradleException("Missing storeFile in key.properties")
 
-            storeFile = rootProject.file("android/$storeFilePath")
+            storeFile = rootProject.file(storeFilePath)
             storePassword = keystoreProperties["storePassword"] as String
             keyAlias = keystoreProperties["keyAlias"] as String
             keyPassword = keystoreProperties["keyPassword"] as String
