@@ -1,3 +1,4 @@
+import 'package:dompetly/utils/string_util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,15 +12,10 @@ class LoginFormController extends GetxController {
   final obscurePassword = true.obs;
   final loading = false.obs;
 
-  bool _isValidEmail(String email) {
-    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    return emailRegex.hasMatch(email);
-  }
-
   bool validateForm() {
     emailError.value = email.text.isEmpty
         ? 'Email field is required'
-        : _isValidEmail(email.text)
+        : StringUtil.isValidEmail(email.text)
         ? null
         : 'Email is not valid';
     passwordError.value = password.text.length < 6
@@ -30,6 +26,13 @@ class LoginFormController extends GetxController {
       emailError.value,
       passwordError.value,
     ].every((error) => error == null);
+  }
+
+  void clearForm() {
+    email.clear();
+    password.clear();
+    emailError.value = null;
+    passwordError.value = null;
   }
 
   void disposeControllers() {

@@ -19,8 +19,6 @@ class LayoutTemplate extends StatelessWidget {
 
   final ThemeController _themeController = Get.find();
 
-  Rx<String> currentPage = ''.obs;
-
   Widget _buildNavItem(
     BuildContext context, {
     required IconData icon,

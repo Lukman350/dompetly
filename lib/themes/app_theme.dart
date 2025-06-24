@@ -25,26 +25,32 @@ class AppTheme {
         headlineLarge: GoogleFonts.poppins(
           fontSize: 32,
           fontWeight: FontWeight.w600,
+          color: AppColors.textPrimary,
         ),
         headlineMedium: GoogleFonts.poppins(
           fontSize: 24,
           fontWeight: FontWeight.w600,
+          color: AppColors.textPrimary,
         ),
         headlineSmall: GoogleFonts.poppins(
           fontSize: 20,
           fontWeight: FontWeight.w600,
+          color: AppColors.textPrimary,
         ),
         titleMedium: GoogleFonts.poppins(
           fontSize: 18,
           fontWeight: FontWeight.w600,
+          color: AppColors.textPrimary,
         ),
         bodyLarge: GoogleFonts.poppins(
           fontSize: 16,
           fontWeight: FontWeight.w400,
+          color: AppColors.textPrimary,
         ),
         bodyMedium: GoogleFonts.poppins(
           fontSize: 14,
           fontWeight: FontWeight.w400,
+          color: AppColors.textPrimary,
         ),
         bodySmall: GoogleFonts.poppins(
           fontSize: 12,
@@ -97,26 +103,32 @@ class AppTheme {
         headlineLarge: GoogleFonts.poppins(
           fontSize: 32,
           fontWeight: FontWeight.w600,
+          color: AppColors.textPrimaryDark,
         ),
         headlineMedium: GoogleFonts.poppins(
           fontSize: 24,
           fontWeight: FontWeight.w600,
+          color: AppColors.textPrimaryDark,
         ),
         headlineSmall: GoogleFonts.poppins(
           fontSize: 20,
           fontWeight: FontWeight.w600,
+          color: AppColors.textPrimaryDark,
         ),
         titleMedium: GoogleFonts.poppins(
           fontSize: 18,
           fontWeight: FontWeight.w600,
+          color: AppColors.textPrimaryDark,
         ),
         bodyLarge: GoogleFonts.poppins(
           fontSize: 16,
           fontWeight: FontWeight.w400,
+          color: AppColors.textPrimaryDark,
         ),
         bodyMedium: GoogleFonts.poppins(
           fontSize: 14,
           fontWeight: FontWeight.w400,
+          color: AppColors.textPrimaryDark,
         ),
         bodySmall: GoogleFonts.poppins(
           fontSize: 12,
