@@ -23,11 +23,11 @@ class CustomFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextFormField(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Obx(
+          () => TextFormField(
             controller: controller,
             obscureText: obscureText == null ? false : obscureText!.value,
             keyboardType: keyboardType,
@@ -35,7 +35,7 @@ class CustomFormField extends StatelessWidget {
               labelText: label,
               errorText: errorText?.value,
               border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderRadius: BorderRadius.all(Radius.circular(99)),
               ),
               suffixIcon: isPassword
                   ? IconButton(
@@ -49,9 +49,9 @@ class CustomFormField extends StatelessWidget {
                   : null,
             ),
           ),
-          const SizedBox(height: 16),
-        ],
-      ),
+        ),
+        const SizedBox(height: 16),
+      ],
     );
   }
 }

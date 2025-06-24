@@ -1,5 +1,5 @@
 import 'package:dompetly/controllers/auth_controller.dart';
-import 'package:dompetly/pages/dashboard_page.dart';
+import 'package:dompetly/pages/security_pin_page.dart';
 import 'package:dompetly/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,7 +35,11 @@ class _SplashScreenState extends State<SplashScreen>
 
     Future.delayed(Duration(seconds: 2), () {
       if (authController.isLoggedIn) {
-        Get.offAllNamed(DashboardPage.routeName);
+        if (authController.isPinSet) {
+          Get.offAllNamed('${SecurityPinPage.routeName}?mode=auth');
+        } else {
+          Get.offAllNamed('${SecurityPinPage.routeName}?mode=create');
+        }
       } else {
         Get.offAllNamed(WelcomePage.routeName);
       }
@@ -57,11 +61,14 @@ class _SplashScreenState extends State<SplashScreen>
       body: Center(
         child: FadeTransition(
           opacity: _animation,
-          child: Image.asset(
-            isDark
-                ? 'assets/images/dompetly_dark.png'
-                : 'assets/images/dompetly_light.png',
-            width: 500,
+          child: Hero(
+            tag: 'dompetly-logo',
+            child: Image.asset(
+              isDark
+                  ? 'assets/images/dompetly_dark.png'
+                  : 'assets/images/dompetly_light.png',
+              width: 500,
+            ),
           ),
         ),
       ),

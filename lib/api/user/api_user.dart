@@ -46,25 +46,47 @@ class ApiUser {
     }
   }
 
-  static Future<void> logout() async {
-    if (authController.localUser.value == null) {
-      return;
-    }
-
-    final response = await Api.instance.post(
-      '/logout',
+  static Future<BaseResponse> updatePin(
+    String pin,
+    String newPin,
+    String confirmPin,
+  ) async {
+    final response = await Api.instance.put(
+      '/authenticated/users/update-pin',
+      data: Map.from({
+        'pin': pin,
+        'newPin': newPin,
+        'confirmNewPin': confirmPin,
+      }),
       options: Options(
         headers: {
-          'Authorization': 'Bearer ${authController.localUser.value?.token}',
+          'Authorization': 'Bearer ${authController.authUser.value?.token}',
         },
       ),
     );
 
     if (response.statusCode == 200) {
-      BaseResponse baseResponse = BaseResponse.fromJson(response.data);
-      if (baseResponse.success) {
-        authController.localUser.value = null;
-      }
+      return BaseResponse(success: true, message: response.data['message']);
+    } else {
+      return BaseResponse.fromJson(response.data);
     }
   }
+
+  // static Future<void> logout() async {
+  //   final response = await Api.instance.post(
+  //     '/authenticated/users/logout',
+  //     options: Options(
+  //       headers: {
+  //         'Authorization': 'Bearer ${authController.localUser.value?.token}',
+  //       },
+  //     ),
+  //   );
+  //
+  //   if (response.statusCode == 200) {
+  //     BaseResponse baseResponse = BaseResponse.fromJson(response.data);
+  //     if (baseResponse.success) {
+  //       authController.localUser.value = null;
+  //     }
+  //   }
+  // }
 }
