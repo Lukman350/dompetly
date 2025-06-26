@@ -26,6 +26,8 @@ void main() async {
 class MyApp extends StatelessWidget {
   final ThemeController themeController = Get.find();
 
+  MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Obx(
