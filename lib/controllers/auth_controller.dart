@@ -192,6 +192,8 @@ class AuthController extends GetxController {
       if (response.success) {
         authUser.value = authUser.value?.copyWith(pin: pin);
 
+        _saveAuthUser(authUser.value);
+
         Snackbar.show("PIN created successfully", SnackbarType.success);
 
         Future.delayed(

@@ -15,4 +15,5 @@ class AppColors {
   static const buttonSecondary = Color(0xFFDFF7E2);
   static const backgroundGreenWhite = Color(0xFFF1FFF3);
   static const darkModeGreenBlack = Color(0xFF031314);
+  static const oceanBlue = Color(0xFF0068FF);
 }

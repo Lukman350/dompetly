@@ -1,11 +1,13 @@
 import 'package:dompetly/components/goal_progress_card.dart';
 import 'package:dompetly/components/layout_template.dart';
+import 'package:dompetly/components/transaction_tabs.dart';
 import 'package:dompetly/controllers/auth_controller.dart';
 import 'package:dompetly/controllers/theme_controller.dart';
 import 'package:dompetly/pages/welcome_page.dart';
 import 'package:dompetly/themes/app_colors.dart';
 import 'package:dompetly/utils/string_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -49,6 +51,8 @@ class DashboardPage extends StatelessWidget {
                     ],
                   ),
                   Row(
+                    mainAxisSize: MainAxisSize.min,
+
                     children: [
                       IconButton(
                         onPressed: () {
@@ -64,6 +68,7 @@ class DashboardPage extends StatelessWidget {
                                     ThemeMode.dark
                                 ? AppColors.textPrimaryDark
                                 : AppColors.textPrimary,
+                            size: 20,
                           ),
                         ),
                         style: ButtonStyle(
@@ -83,7 +88,7 @@ class DashboardPage extends StatelessWidget {
                           ),
                           child: Icon(
                             Icons.notifications_outlined,
-                            size: 30,
+                            size: 20,
                             color: AppColors.textSecondaryDark,
                           ),
                         ),
@@ -96,6 +101,19 @@ class DashboardPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(99),
                             ),
                           ),
+                          padding: WidgetStateProperty.all(
+                            const EdgeInsets.all(5),
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () async {
+                          await _authController.signOut();
+
+                          Get.offAllNamed(WelcomePage.routeName);
+                        },
+                        icon: Icon(Icons.logout, size: 20),
+                        style: ButtonStyle(
                           padding: WidgetStateProperty.all(
                             const EdgeInsets.all(5),
                           ),
@@ -118,11 +136,11 @@ class DashboardPage extends StatelessWidget {
                           spacing: 5,
                           children: [
                             Obx(
-                              () => Image.asset(
+                              () => SvgPicture.asset(
                                 _themeController.themeMode.value ==
                                         ThemeMode.dark
-                                    ? 'assets/images/icons/income_arrow_light.png'
-                                    : 'assets/images/icons/income_arrow_dark.png',
+                                    ? 'assets/images/icons/income_arrow_light.svg'
+                                    : 'assets/images/icons/income_arrow_dark.svg',
                               ),
                             ),
                             Text(
@@ -157,11 +175,11 @@ class DashboardPage extends StatelessWidget {
                           spacing: 5,
                           children: [
                             Obx(
-                              () => Image.asset(
+                              () => SvgPicture.asset(
                                 _themeController.themeMode.value ==
                                         ThemeMode.dark
-                                    ? 'assets/images/icons/expense_arrow_light.png'
-                                    : 'assets/images/icons/expense_arrow_dark.png',
+                                    ? 'assets/images/icons/expense_arrow_light.svg'
+                                    : 'assets/images/icons/expense_arrow_dark.svg',
                               ),
                             ),
                             Text(
@@ -242,13 +260,13 @@ class DashboardPage extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 10,
+                  spacing: 5,
                   children: [
                     Obx(
-                      () => Image.asset(
+                      () => SvgPicture.asset(
                         _themeController.themeMode.value == ThemeMode.dark
-                            ? 'assets/images/icons/check_icon_light.png'
-                            : 'assets/images/icons/check_icon_dark.png',
+                            ? 'assets/images/icons/check_icon_light.svg'
+                            : 'assets/images/icons/check_icon_dark.svg',
                       ),
                     ),
                     Expanded(child: Text('30% Of Your Expenses, looks good.')),
@@ -260,14 +278,7 @@ class DashboardPage extends StatelessWidget {
         ),
         children: [
           GoalProgressCard(progress: 0.75),
-          IconButton(
-            onPressed: () {
-              _authController.signOut();
-
-              Get.offAllNamed(WelcomePage.routeName);
-            },
-            icon: Icon(Icons.logout),
-          ),
+          Expanded(child: TransactionTabs()),
         ],
       ),
     );
