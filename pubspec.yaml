@@ -1,5 +1,5 @@
 name: dompetly
-description: "A new Flutter project."
+description: "An mobile app to manage your financial"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -43,6 +43,7 @@ dependencies:
   google_sign_in: ^6.3.0
   pin_code_fields: ^8.0.1
   flutter_dotenv: ^5.2.1
+  flutter_svg: ^2.2.0
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/icons/
+    - assets/images/icons/nav_menu/
     - .env
 
 flutter_native_splash:
